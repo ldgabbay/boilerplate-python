@@ -1,0 +1,20 @@
+#!/bin/bash --rcfile
+
+if [ -f ~/.bashrc ]
+then
+	. ~/.bashrc
+fi
+
+if [ -z "$PYTHONPATH" ]
+then export PYTHONPATH=$PWD/lib/python2.7
+else export PYTHONPATH=$PWD/lib/python2.7:$PYTHONPATH
+fi
+
+export PATH=$PWD/bin:$PATH
+
+if [ ! -d "$PWD/.venv" ]
+then
+	virtualenv $PWD/.venv
+fi
+
+. $PWD/.venv/bin/activate
