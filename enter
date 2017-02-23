@@ -1,20 +1,23 @@
 #!/bin/bash --rcfile
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 if [ -f ~/.bashrc ]
 then
 	. ~/.bashrc
 fi
 
-if [ -z "$PYTHONPATH" ]
-then export PYTHONPATH=$PWD/lib/python2.7
-else export PYTHONPATH=$PWD/lib/python2.7:$PYTHONPATH
-fi
+export PATH=$DIR/bin:$PATH
+export PYTHONPATH=$DIR/lib/python2.7:$PYTHONPATH
 
-export PATH=$PWD/bin:$PATH
-
-if [ ! -d "$PWD/.venv" ]
+if [ ! -d "$DIR/.venv" ]
 then
-	virtualenv $PWD/.venv
+	virtualenv $DIR/.venv
 fi
 
-. $PWD/.venv/bin/activate
+. $DIR/.venv/bin/activate
+
+if [ -f $DIR/.localrc ]
+then
+	. $DIR/.localrc
+fi
