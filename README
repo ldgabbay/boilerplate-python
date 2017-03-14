@@ -1,0 +1,11 @@
+# Boilerplate Python
+
+This is a boilerplate framework for python projects.
+
+## Requirements
+
+* `bash`
+* `make`
+* `python2.7`
+* `pip`
+* `virtualenv`
