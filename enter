@@ -7,6 +7,7 @@ if [ -f ~/.bashrc ]
 then
 	. ~/.bashrc
 fi
+# TODO on Debian, /etc/bash.bashrc is sourced as well
 
 if [ -z ${PATH+x} ]
 then
