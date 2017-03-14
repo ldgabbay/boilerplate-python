@@ -15,3 +15,5 @@ Run `./enter` to start a new interactive `bash` shell that:
 * enters a virtual environment with all `requirements.txt` packages installed
 * defines `venv_update` to refresh the environment with the modules specified in `requirements.txt`
 * Sources `./.venvrc` if it exists
+
+Within `./.venvrc`, you may define `VENV_NAME` to alter what is displayed on the command prompt.

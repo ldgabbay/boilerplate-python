@@ -38,9 +38,9 @@ then
 	virtualenv "$DIR/.venv"
 fi
 
-. "$DIR/.venv/bin/activate"
+VENV_OLD_PS1="$PS1"
 
-PS1="($DIR) $_OLD_VIRTUAL_PS1"
+. "$DIR/.venv/bin/activate"
 
 if [ ! "$VIRTUAL_ENV" -ef "$DIR/.venv" ]
 then
@@ -54,3 +54,10 @@ if [ -f "$DIR/.venvrc" ]
 then
 	. "$DIR/.venvrc"
 fi
+
+if [ -z ${VENV_NAME+x} ]
+then
+	VENV_NAME="$DIR"
+fi
+
+PS1="($VENV_NAME) $VENV_OLD_PS1"
