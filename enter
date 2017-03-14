@@ -50,7 +50,7 @@ fi
 
 venv_update
 
-if [ -f "$DIR/.localrc" ]
+if [ -f "$DIR/.venvrc" ]
 then
-	. "$DIR/.localrc"
+	. "$DIR/.venvrc"
 fi
