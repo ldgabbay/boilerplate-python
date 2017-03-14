@@ -1,6 +1,16 @@
 #!/bin/bash --rcfile
 # Copyright 2017 Queue Continuum LLC
 
+venv_update () {
+	if [ ! -f "$DIR/.venv/.requirements.txt.d" -o "$DIR/requirements.txt" -nt "$DIR/.venv/.requirements.txt.d" ]
+	then
+		virtualenv --clear "$DIR/.venv"
+		pip install -r "$DIR/requirements.txt"
+		touch "$DIR/.venv/.requirements.txt.d"
+	fi
+	return 0
+}
+
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 if [ -f ~/.bashrc ]
@@ -31,6 +41,14 @@ fi
 . "$DIR/.venv/bin/activate"
 
 PS1="($DIR) $_OLD_VIRTUAL_PS1"
+
+if [ ! "$VIRTUAL_ENV" -ef "$DIR/.venv" ]
+then
+	echo "Unexpected Python virtual environment."
+	exit 1
+fi
+
+venv_update
 
 if [ -f "$DIR/.localrc" ]
 then
