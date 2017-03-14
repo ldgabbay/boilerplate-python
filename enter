@@ -17,6 +17,8 @@ fi
 
 . "$DIR/.venv/bin/activate"
 
+PS1="($DIR) $_OLD_VIRTUAL_PS1"
+
 if [ -f "$DIR/.localrc" ]
 then
 	. "$DIR/.localrc"
