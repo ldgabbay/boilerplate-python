@@ -8,8 +8,19 @@ then
 	. ~/.bashrc
 fi
 
-export PATH="$DIR/bin:$PATH"
-export PYTHONPATH="$DIR/lib/python2.7:$PYTHONPATH"
+if [ -z ${PATH+x} ]
+then
+	export PATH="$DIR/bin"
+else
+	export PATH="$DIR/bin:$PATH"
+fi
+
+if [ -z ${PYTHONPATH+x} ]
+then
+	export PYTHONPATH="$DIR/lib/python2.7"
+else
+	export PYTHONPATH="$DIR/lib/python2.7:$PYTHONPATH"
+fi
 
 if [ ! -d "$DIR/.venv" ]
 then
