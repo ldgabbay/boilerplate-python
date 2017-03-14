@@ -1,3 +1,5 @@
+# Copyright 2017 Queue Continuum LLC
+
 .PHONY: all
 
 all: .venv/.requirements.txt.d
