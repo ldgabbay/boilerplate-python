@@ -7,17 +7,17 @@ then
 	. ~/.bashrc
 fi
 
-export PATH=$DIR/bin:$PATH
-export PYTHONPATH=$DIR/lib/python2.7:$PYTHONPATH
+export PATH="$DIR/bin:$PATH"
+export PYTHONPATH="$DIR/lib/python2.7:$PYTHONPATH"
 
 if [ ! -d "$DIR/.venv" ]
 then
-	virtualenv $DIR/.venv
+	virtualenv "$DIR/.venv"
 fi
 
-. $DIR/.venv/bin/activate
+. "$DIR/.venv/bin/activate"
 
-if [ -f $DIR/.localrc ]
+if [ -f "$DIR/.localrc" ]
 then
-	. $DIR/.localrc
+	. "$DIR/.localrc"
 fi
