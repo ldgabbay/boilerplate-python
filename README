@@ -8,3 +8,10 @@ This is a boilerplate framework for python projects.
 * `python2.7`
 * `pip`
 * `virtualenv`
+
+## Instructions
+
+Run `./enter` to start a new interactive `bash` shell that:
+* enters a virtual environment with all `requirements.txt` packages installed
+* defines `venv_update` to refresh the environment with the modules specified in `requirements.txt`
+* Sources `./.venvrc` if it exists
