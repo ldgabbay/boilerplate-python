@@ -2,16 +2,16 @@
 # Copyright 2017 Queue Continuum LLC
 
 venv_update () {
-	if [ ! -f "$DIR/.venv/.requirements.txt.d" -o "$DIR/requirements.txt" -nt "$DIR/.venv/.requirements.txt.d" ]
+	if [ ! -f "$VENV_BASEDIR/.venv/.requirements.txt.d" -o "$VENV_BASEDIR/requirements.txt" -nt "$VENV_BASEDIR/.venv/.requirements.txt.d" ]
 	then
-		virtualenv --clear "$DIR/.venv"
-		pip install -r "$DIR/requirements.txt"
-		touch "$DIR/.venv/.requirements.txt.d"
+		virtualenv --clear "$VENV_BASEDIR/.venv"
+		pip install -r "$VENV_BASEDIR/requirements.txt"
+		touch "$VENV_BASEDIR/.venv/.requirements.txt.d"
 	fi
 	return 0
 }
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+VENV_BASEDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 if [ -f ~/.bashrc ]
 then
@@ -21,28 +21,28 @@ fi
 
 if [ -z ${PATH+x} ]
 then
-	export PATH="$DIR/bin"
+	export PATH="$VENV_BASEDIR/bin"
 else
-	export PATH="$DIR/bin:$PATH"
+	export PATH="$VENV_BASEDIR/bin:$PATH"
 fi
 
 if [ -z ${PYTHONPATH+x} ]
 then
-	export PYTHONPATH="$DIR/lib/python2.7"
+	export PYTHONPATH="$VENV_BASEDIR/lib/python2.7"
 else
-	export PYTHONPATH="$DIR/lib/python2.7:$PYTHONPATH"
+	export PYTHONPATH="$VENV_BASEDIR/lib/python2.7:$PYTHONPATH"
 fi
 
-if [ ! -d "$DIR/.venv" ]
+if [ ! -d "$VENV_BASEDIR/.venv" ]
 then
-	virtualenv "$DIR/.venv"
+	virtualenv "$VENV_BASEDIR/.venv"
 fi
 
 VENV_OLD_PS1="$PS1"
 
-. "$DIR/.venv/bin/activate"
+. "$VENV_BASEDIR/.venv/bin/activate"
 
-if [ ! "$VIRTUAL_ENV" -ef "$DIR/.venv" ]
+if [ ! "$VIRTUAL_ENV" -ef "$VENV_BASEDIR/.venv" ]
 then
 	echo "Unexpected Python virtual environment."
 	exit 1
@@ -50,14 +50,14 @@ fi
 
 venv_update
 
-if [ -f "$DIR/.venvrc" ]
+if [ -f "$VENV_BASEDIR/.venvrc" ]
 then
-	. "$DIR/.venvrc"
+	. "$VENV_BASEDIR/.venvrc"
 fi
 
 if [ -z ${VENV_NAME+x} ]
 then
-	VENV_NAME="$DIR"
+	VENV_NAME="$VENV_BASEDIR"
 fi
 
 PS1="($VENV_NAME) $VENV_OLD_PS1"
